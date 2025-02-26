@@ -9,9 +9,32 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
+import { MessageCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const dummyNetWorthData = [
+  { month: 'Jan', value: 50000 },
+  { month: 'Feb', value: 52000 },
+  { month: 'Mar', value: 51000 },
+  { month: 'Apr', value: 54000 },
+  { month: 'May', value: 55000 },
+  { month: 'Jun', value: 58000 },
+];
+
+const expenseData = [
+  { name: 'Housing', value: 1500 },
+  { name: 'Food', value: 400 },
+  { name: 'Transport', value: 300 },
+  { name: 'Utilities', value: 200 },
+  { name: 'Entertainment', value: 150 },
+];
+
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8'];
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
+  const [showAIChat, setShowAIChat] = useState(false);
 
   return (
     <div className="min-h-screen p-4 md:p-8 bg-background">
@@ -22,7 +45,7 @@ const Index = () => {
         </div>
 
         <Tabs defaultValue="dashboard" className="space-y-8">
-          <TabsList>
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-5">
             <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
             <TabsTrigger value="goals">Goals</TabsTrigger>
             <TabsTrigger value="investments">Investments</TabsTrigger>
@@ -30,25 +53,25 @@ const Index = () => {
             <TabsTrigger value="scenarios">What-If Scenarios</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="dashboard" className="space-y-8">
+          <TabsContent value="dashboard" className="space-y-8 animate-in">
             <div className="grid gap-4 md:grid-cols-3">
               <MetricCard
-                title="Total Sales Today"
-                value="$500.20"
-                percentage={55}
-                color="bg-[#ff9f87]"
+                title="Net Worth"
+                value="$58,000"
+                percentage={8}
+                color="bg-[#0088FE]"
               />
               <MetricCard
-                title="# of Orders"
-                value="938"
-                percentage={30}
-                color="bg-[#8b5cf6]"
+                title="Monthly Savings"
+                value="$2,500"
+                percentage={15}
+                color="bg-[#00C49F]"
               />
               <MetricCard
-                title="Net Profit"
-                value="$162.50"
-                percentage={70}
-                color="bg-[#6ee7b7]"
+                title="Total Investments"
+                value="$25,000"
+                percentage={12}
+                color="bg-[#FFBB28]"
               />
             </div>
 
@@ -59,9 +82,20 @@ const Index = () => {
                   <CardDescription>Your financial growth over time</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {/* We'll add charts in the next iteration */}
-                  <div className="h-[300px] flex items-center justify-center text-muted-foreground">
-                    Chart coming soon...
+                  <div className="h-[300px]">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <LineChart data={dummyNetWorthData}>
+                        <XAxis dataKey="month" />
+                        <YAxis />
+                        <Tooltip />
+                        <Line
+                          type="monotone"
+                          dataKey="value"
+                          stroke="#0088FE"
+                          strokeWidth={2}
+                        />
+                      </LineChart>
+                    </ResponsiveContainer>
                   </div>
                 </CardContent>
               </Card>
@@ -74,16 +108,36 @@ const Index = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {/* We'll add charts in the next iteration */}
-                  <div className="h-[300px] flex items-center justify-center text-muted-foreground">
-                    Chart coming soon...
+                  <div className="h-[300px]">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <PieChart>
+                        <Pie
+                          data={expenseData}
+                          cx="50%"
+                          cy="50%"
+                          innerRadius={60}
+                          outerRadius={80}
+                          fill="#8884d8"
+                          paddingAngle={5}
+                          dataKey="value"
+                        >
+                          {expenseData.map((entry, index) => (
+                            <Cell
+                              key={`cell-${index}`}
+                              fill={COLORS[index % COLORS.length]}
+                            />
+                          ))}
+                        </Pie>
+                        <Tooltip />
+                      </PieChart>
+                    </ResponsiveContainer>
                   </div>
                 </CardContent>
               </Card>
             </div>
           </TabsContent>
 
-          <TabsContent value="goals">
+          <TabsContent value="goals" className="animate-in">
             <Card>
               <CardHeader>
                 <CardTitle>Financial Goals</CardTitle>
@@ -97,7 +151,7 @@ const Index = () => {
             </Card>
           </TabsContent>
 
-          <TabsContent value="investments">
+          <TabsContent value="investments" className="animate-in">
             <Card>
               <CardHeader>
                 <CardTitle>Investment Portfolio</CardTitle>
@@ -113,7 +167,7 @@ const Index = () => {
             </Card>
           </TabsContent>
 
-          <TabsContent value="debt">
+          <TabsContent value="debt" className="animate-in">
             <Card>
               <CardHeader>
                 <CardTitle>Debt Management</CardTitle>
@@ -127,7 +181,7 @@ const Index = () => {
             </Card>
           </TabsContent>
 
-          <TabsContent value="scenarios">
+          <TabsContent value="scenarios" className="animate-in">
             <Card>
               <CardHeader>
                 <CardTitle>What-If Scenarios</CardTitle>
@@ -144,6 +198,14 @@ const Index = () => {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* AI Assistant Button */}
+      <Button
+        className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg"
+        onClick={() => setShowAIChat(!showAIChat)}
+      >
+        <MessageCircle className="h-6 w-6" />
+      </Button>
     </div>
   );
 };
