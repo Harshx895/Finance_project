@@ -99,3 +99,23 @@
 .progress-gradient {
   background: linear-gradient(90deg, var(--primary), rgba(255, 100, 130, 0.8));
 }
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .glass-card {
+    border-radius: calc(var(--radius) - 0.25rem);
+  }
+  
+  .tab-active {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(255, 100, 130, 0.3);
+  }
+}

@@ -64,49 +64,49 @@ const Index = () => {
   const [showAIChat, setShowAIChat] = useState(false);
 
   return (
-    <div className="min-h-screen p-4 md:p-8 bg-background">
-      <div className="max-w-7xl mx-auto space-y-8">
+    <div className="min-h-screen p-3 md:p-8 bg-background">
+      <div className="max-w-7xl mx-auto space-y-6 md:space-y-8">
         <div className="flex items-center justify-between">
           <div className="space-y-1">
-            <h1 className="text-3xl font-bold tracking-tight">Hello, Andrew</h1>
-            <p className="text-muted-foreground">Your finances are looking good today</p>
+            <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Hello, Andrew</h1>
+            <p className="text-sm md:text-base text-muted-foreground">Your finances are looking good today</p>
           </div>
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-full bg-secondary flex items-center justify-center">
-              <User className="h-5 w-5 text-primary" />
+            <div className="h-9 w-9 md:h-10 md:w-10 rounded-full bg-secondary flex items-center justify-center">
+              <User className="h-4 w-4 md:h-5 md:w-5 text-primary" />
             </div>
-            <ChevronDown className="h-4 w-4 text-muted-foreground" />
+            <ChevronDown className="h-3 w-3 md:h-4 md:w-4 text-muted-foreground" />
           </div>
         </div>
 
-        <Tabs defaultValue="dashboard" className="space-y-8">
-          <div className="relative overflow-auto">
-            <TabsList className="inline-flex w-full md:w-auto p-1 gap-1 bg-secondary rounded-full">
-              <TabsTrigger value="dashboard" className="rounded-full data-[state=active]:tab-active">
-                <BarChart3 className="h-4 w-4 mr-2" />
-                Dashboard
+        <Tabs defaultValue="dashboard" className="space-y-6 md:space-y-8">
+          <div className="relative overflow-auto pb-1">
+            <TabsList className="inline-flex w-full md:w-auto p-1 gap-1 bg-secondary rounded-full overflow-x-auto scrollbar-none">
+              <TabsTrigger value="dashboard" className="rounded-full whitespace-nowrap data-[state=active]:tab-active">
+                <BarChart3 className="h-4 w-4 mr-1 md:mr-2" />
+                <span className="md:inline">Dashboard</span>
               </TabsTrigger>
-              <TabsTrigger value="goals" className="rounded-full data-[state=active]:tab-active">
-                <Target className="h-4 w-4 mr-2" />
-                Goals
+              <TabsTrigger value="goals" className="rounded-full whitespace-nowrap data-[state=active]:tab-active">
+                <Target className="h-4 w-4 mr-1 md:mr-2" />
+                <span className="md:inline">Goals</span>
               </TabsTrigger>
-              <TabsTrigger value="investments" className="rounded-full data-[state=active]:tab-active">
-                <TrendingUp className="h-4 w-4 mr-2" />
-                Investments
+              <TabsTrigger value="investments" className="rounded-full whitespace-nowrap data-[state=active]:tab-active">
+                <TrendingUp className="h-4 w-4 mr-1 md:mr-2" />
+                <span className="md:inline">Investments</span>
               </TabsTrigger>
-              <TabsTrigger value="debt" className="rounded-full data-[state=active]:tab-active">
-                <CreditCard className="h-4 w-4 mr-2" />
-                Debt
+              <TabsTrigger value="debt" className="rounded-full whitespace-nowrap data-[state=active]:tab-active">
+                <CreditCard className="h-4 w-4 mr-1 md:mr-2" />
+                <span className="md:inline">Debt</span>
               </TabsTrigger>
-              <TabsTrigger value="scenarios" className="rounded-full data-[state=active]:tab-active">
-                <Lightbulb className="h-4 w-4 mr-2" />
-                Scenarios
+              <TabsTrigger value="scenarios" className="rounded-full whitespace-nowrap data-[state=active]:tab-active">
+                <Lightbulb className="h-4 w-4 mr-1 md:mr-2" />
+                <span className="md:inline">Scenarios</span>
               </TabsTrigger>
             </TabsList>
           </div>
 
-          <TabsContent value="dashboard" className="space-y-8 animate-in">
-            <div className="grid gap-4 md:grid-cols-3">
+          <TabsContent value="dashboard" className="space-y-6 md:space-y-8 animate-in">
+            <div className="grid gap-3 md:gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
               <MetricCard
                 title="Net Worth"
                 value="$58,000"
@@ -124,24 +124,26 @@ const Index = () => {
                 value="$25,000"
                 percentage={12}
                 color="bg-[#4ECDC4]"
+                className="sm:col-span-2 md:col-span-1"
               />
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-2">
               <Card className="glass-card border-none shadow-lg">
-                <CardHeader>
-                  <CardTitle>Net Worth Trend</CardTitle>
+                <CardHeader className="p-4 md:p-6">
+                  <CardTitle className="text-lg md:text-2xl">Net Worth Trend</CardTitle>
                   <CardDescription>Your financial growth over time</CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <div className="h-[300px]">
+                <CardContent className="p-4 md:p-6 pt-0">
+                  <div className="h-[200px] md:h-[300px]">
                     <ResponsiveContainer width="100%" height="100%">
-                      <LineChart data={dummyNetWorthData}>
-                        <XAxis dataKey="month" stroke="#888" />
-                        <YAxis stroke="#888" />
+                      <LineChart data={dummyNetWorthData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                        <XAxis dataKey="month" stroke="#888" fontSize={12} tickLine={false} axisLine={false} />
+                        <YAxis stroke="#888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `$${value/1000}k`} />
                         <Tooltip 
                           contentStyle={{ backgroundColor: 'rgba(30, 30, 40, 0.8)', borderColor: 'rgba(255, 255, 255, 0.1)' }}
                           labelStyle={{ color: '#fff' }}
+                          formatter={(value) => [`$${value}`, 'Value']}
                         />
                         <Line
                           type="monotone"
@@ -158,24 +160,26 @@ const Index = () => {
               </Card>
 
               <Card className="glass-card border-none shadow-lg">
-                <CardHeader>
-                  <CardTitle>Expense Breakdown</CardTitle>
+                <CardHeader className="p-4 md:p-6">
+                  <CardTitle className="text-lg md:text-2xl">Expense Breakdown</CardTitle>
                   <CardDescription>
                     Your spending categories this month
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <div className="h-[300px]">
+                <CardContent className="p-4 md:p-6 pt-0">
+                  <div className="h-[200px] md:h-[300px]">
                     <ResponsiveContainer width="100%" height="100%">
-                      <PieChart>
+                      <PieChart margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
                         <Pie
                           data={expenseData}
                           cx="50%"
                           cy="50%"
                           innerRadius={60}
-                          outerRadius={90}
+                          outerRadius={80}
                           paddingAngle={5}
                           dataKey="value"
+                          label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                          labelLine={false}
                         >
                           {expenseData.map((entry, index) => (
                             <Cell
@@ -187,6 +191,7 @@ const Index = () => {
                         <Tooltip 
                           contentStyle={{ backgroundColor: 'rgba(30, 30, 40, 0.8)', borderColor: 'rgba(255, 255, 255, 0.1)' }}
                           labelStyle={{ color: '#fff' }}
+                          formatter={(value) => [`$${value}`, 'Amount']}
                         />
                       </PieChart>
                     </ResponsiveContainer>
@@ -425,10 +430,10 @@ const Index = () => {
       </div>
 
       <Button
-        className="fixed bottom-6 right-6 h-14 w-14 rounded-full ai-chat-button border-none"
+        className="fixed bottom-6 right-6 h-12 w-12 md:h-14 md:w-14 rounded-full ai-chat-button border-none z-50"
         onClick={() => setShowAIChat(!showAIChat)}
       >
-        <MessageCircle className="h-6 w-6 text-white" />
+        <MessageCircle className="h-5 w-5 md:h-6 md:w-6 text-white" />
       </Button>
     </div>
   );
