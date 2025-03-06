@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { MetricCard } from "@/components/MetricCard";
 import {
@@ -9,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer, XAxis, YAxis, Tooltip, BarChart, Bar } from 'recharts';
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, User, ChevronDown, TrendingUp, Wallet, CreditCard, BarChart3, Target, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const dummyNetWorthData = [
@@ -29,7 +30,7 @@ const expenseData = [
   { name: 'Entertainment', value: 150 },
 ];
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8'];
+const COLORS = ['#FF6B6B', '#48BEFF', '#4ECDC4', '#FFD166', '#FFADAD'];
 
 const goalData = [
   { name: 'Emergency Fund', current: 8000, target: 10000, deadline: 'Dec 2024' },
@@ -65,19 +66,44 @@ const Index = () => {
   return (
     <div className="min-h-screen p-4 md:p-8 bg-background">
       <div className="max-w-7xl mx-auto space-y-8">
-        <div className="flex flex-col space-y-4">
-          <h1 className="text-4xl font-bold tracking-tight">Hello, Andrew</h1>
-          <p className="text-muted-foreground">Welcome back</p>
+        <div className="flex items-center justify-between">
+          <div className="space-y-1">
+            <h1 className="text-3xl font-bold tracking-tight">Hello, Andrew</h1>
+            <p className="text-muted-foreground">Your finances are looking good today</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 rounded-full bg-secondary flex items-center justify-center">
+              <User className="h-5 w-5 text-primary" />
+            </div>
+            <ChevronDown className="h-4 w-4 text-muted-foreground" />
+          </div>
         </div>
 
         <Tabs defaultValue="dashboard" className="space-y-8">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-5">
-            <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
-            <TabsTrigger value="goals">Goals</TabsTrigger>
-            <TabsTrigger value="investments">Investments</TabsTrigger>
-            <TabsTrigger value="debt">Debt Management</TabsTrigger>
-            <TabsTrigger value="scenarios">What-If Scenarios</TabsTrigger>
-          </TabsList>
+          <div className="relative overflow-auto">
+            <TabsList className="inline-flex w-full md:w-auto p-1 gap-1 bg-secondary rounded-full">
+              <TabsTrigger value="dashboard" className="rounded-full data-[state=active]:tab-active">
+                <BarChart3 className="h-4 w-4 mr-2" />
+                Dashboard
+              </TabsTrigger>
+              <TabsTrigger value="goals" className="rounded-full data-[state=active]:tab-active">
+                <Target className="h-4 w-4 mr-2" />
+                Goals
+              </TabsTrigger>
+              <TabsTrigger value="investments" className="rounded-full data-[state=active]:tab-active">
+                <TrendingUp className="h-4 w-4 mr-2" />
+                Investments
+              </TabsTrigger>
+              <TabsTrigger value="debt" className="rounded-full data-[state=active]:tab-active">
+                <CreditCard className="h-4 w-4 mr-2" />
+                Debt
+              </TabsTrigger>
+              <TabsTrigger value="scenarios" className="rounded-full data-[state=active]:tab-active">
+                <Lightbulb className="h-4 w-4 mr-2" />
+                Scenarios
+              </TabsTrigger>
+            </TabsList>
+          </div>
 
           <TabsContent value="dashboard" className="space-y-8 animate-in">
             <div className="grid gap-4 md:grid-cols-3">
@@ -85,24 +111,24 @@ const Index = () => {
                 title="Net Worth"
                 value="$58,000"
                 percentage={8}
-                color="bg-[#0088FE]"
+                color="bg-[#FF6B6B]"
               />
               <MetricCard
                 title="Monthly Savings"
                 value="$2,500"
                 percentage={15}
-                color="bg-[#00C49F]"
+                color="bg-[#48BEFF]"
               />
               <MetricCard
                 title="Total Investments"
                 value="$25,000"
                 percentage={12}
-                color="bg-[#FFBB28]"
+                color="bg-[#4ECDC4]"
               />
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2">
-              <Card>
+            <div className="grid gap-6 md:grid-cols-2">
+              <Card className="glass-card border-none shadow-lg">
                 <CardHeader>
                   <CardTitle>Net Worth Trend</CardTitle>
                   <CardDescription>Your financial growth over time</CardDescription>
@@ -111,14 +137,19 @@ const Index = () => {
                   <div className="h-[300px]">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={dummyNetWorthData}>
-                        <XAxis dataKey="month" />
-                        <YAxis />
-                        <Tooltip />
+                        <XAxis dataKey="month" stroke="#888" />
+                        <YAxis stroke="#888" />
+                        <Tooltip 
+                          contentStyle={{ backgroundColor: 'rgba(30, 30, 40, 0.8)', borderColor: 'rgba(255, 255, 255, 0.1)' }}
+                          labelStyle={{ color: '#fff' }}
+                        />
                         <Line
                           type="monotone"
                           dataKey="value"
-                          stroke="#0088FE"
-                          strokeWidth={2}
+                          stroke="#FF6B6B"
+                          strokeWidth={3}
+                          dot={{ stroke: '#FF6B6B', strokeWidth: 2, r: 4 }}
+                          activeDot={{ stroke: '#FF6B6B', strokeWidth: 3, r: 6 }}
                         />
                       </LineChart>
                     </ResponsiveContainer>
@@ -126,7 +157,7 @@ const Index = () => {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="glass-card border-none shadow-lg">
                 <CardHeader>
                   <CardTitle>Expense Breakdown</CardTitle>
                   <CardDescription>
@@ -142,8 +173,7 @@ const Index = () => {
                           cx="50%"
                           cy="50%"
                           innerRadius={60}
-                          outerRadius={80}
-                          fill="#8884d8"
+                          outerRadius={90}
                           paddingAngle={5}
                           dataKey="value"
                         >
@@ -154,7 +184,10 @@ const Index = () => {
                             />
                           ))}
                         </Pie>
-                        <Tooltip />
+                        <Tooltip 
+                          contentStyle={{ backgroundColor: 'rgba(30, 30, 40, 0.8)', borderColor: 'rgba(255, 255, 255, 0.1)' }}
+                          labelStyle={{ color: '#fff' }}
+                        />
                       </PieChart>
                     </ResponsiveContainer>
                   </div>
@@ -163,28 +196,38 @@ const Index = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value="goals" className="animate-in">
-            <div className="grid gap-4">
+          <TabsContent value="goals" className="space-y-6 animate-in">
+            <div className="grid gap-6">
               {goalData.map((goal, index) => (
-                <Card key={index}>
-                  <CardHeader>
-                    <CardTitle>{goal.name}</CardTitle>
-                    <CardDescription>Target Date: {goal.deadline}</CardDescription>
+                <Card key={index} className="glass-card border-none shadow-lg overflow-hidden">
+                  <CardHeader className="pb-2">
+                    <div className="flex justify-between items-center">
+                      <CardTitle>{goal.name}</CardTitle>
+                      <span className="text-sm px-3 py-1 rounded-full bg-secondary">
+                        {goal.deadline}
+                      </span>
+                    </div>
+                    <CardDescription>Target: ${goal.target.toLocaleString()}</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
                       <div className="flex justify-between text-sm">
-                        <span>Progress: ${goal.current.toLocaleString()} / ${goal.target.toLocaleString()}</span>
-                        <span>{Math.round((goal.current / goal.target) * 100)}%</span>
+                        <span>Current: ${goal.current.toLocaleString()}</span>
+                        <span className="font-medium">{Math.round((goal.current / goal.target) * 100)}%</span>
                       </div>
-                      <div className="h-2 bg-muted rounded-full">
+                      <div className="h-2 bg-secondary rounded-full overflow-hidden">
                         <div
-                          className="h-2 bg-primary rounded-full transition-all"
+                          className="h-2 progress-gradient rounded-full transition-all"
                           style={{ width: `${(goal.current / goal.target) * 100}%` }}
                         />
                       </div>
-                      <div className="text-sm text-muted-foreground">
-                        <p>AI Tip: Increase your monthly contribution by $100 to reach your goal 2 months earlier.</p>
+                      <div className="p-3 bg-secondary/50 rounded-lg border border-secondary">
+                        <div className="flex gap-2 items-start">
+                          <Lightbulb className="h-5 w-5 text-primary mt-0.5" />
+                          <p className="text-sm">
+                            AI Tip: Increase your monthly contribution by $100 to reach your goal 2 months earlier.
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </CardContent>
@@ -194,8 +237,8 @@ const Index = () => {
           </TabsContent>
 
           <TabsContent value="investments" className="animate-in">
-            <div className="grid gap-4 md:grid-cols-2">
-              <Card>
+            <div className="grid gap-6 md:grid-cols-2">
+              <Card className="glass-card border-none shadow-lg">
                 <CardHeader>
                   <CardTitle>Portfolio Allocation</CardTitle>
                   <CardDescription>Current investment distribution</CardDescription>
@@ -209,8 +252,7 @@ const Index = () => {
                           cx="50%"
                           cy="50%"
                           innerRadius={60}
-                          outerRadius={80}
-                          fill="#8884d8"
+                          outerRadius={90}
                           paddingAngle={5}
                           dataKey="value"
                         >
@@ -218,30 +260,36 @@ const Index = () => {
                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                           ))}
                         </Pie>
-                        <Tooltip />
+                        <Tooltip 
+                          contentStyle={{ backgroundColor: 'rgba(30, 30, 40, 0.8)', borderColor: 'rgba(255, 255, 255, 0.1)' }}
+                          labelStyle={{ color: '#fff' }}
+                        />
                       </PieChart>
                     </ResponsiveContainer>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="glass-card border-none shadow-lg">
                 <CardHeader>
                   <CardTitle>Risk Assessment</CardTitle>
                   <CardDescription>Portfolio risk metrics</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
+                  <div className="space-y-5">
                     {investmentData.map((item, index) => (
                       <div key={index} className="space-y-2">
                         <div className="flex justify-between">
                           <span className="text-sm font-medium">{item.category}</span>
-                          <span className="text-sm text-muted-foreground">{item.percentage}%</span>
+                          <span className="text-sm text-muted-foreground">${item.value.toLocaleString()} ({item.percentage}%)</span>
                         </div>
-                        <div className="h-2 bg-muted rounded-full">
+                        <div className="h-2 bg-secondary rounded-full overflow-hidden">
                           <div
-                            className="h-2 bg-primary rounded-full"
-                            style={{ width: `${item.percentage}%` }}
+                            className="h-2 rounded-full"
+                            style={{ 
+                              width: `${item.percentage}%`, 
+                              backgroundColor: COLORS[index % COLORS.length]
+                            }}
                           />
                         </div>
                       </div>
@@ -253,37 +301,39 @@ const Index = () => {
           </TabsContent>
 
           <TabsContent value="debt" className="animate-in">
-            <div className="space-y-4">
-              <Card>
+            <div className="space-y-6">
+              <Card className="glass-card border-none shadow-lg">
                 <CardHeader>
                   <CardTitle>Debt Overview</CardTitle>
                   <CardDescription>Track and manage your debts</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     {debtData.map((debt, index) => (
-                      <div key={index} className="space-y-2">
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div key={index} className="space-y-3 p-4 bg-secondary/30 rounded-lg border border-secondary/50">
+                        <div className="flex justify-between items-center">
+                          <h3 className="font-semibold">{debt.name}</h3>
+                          <span className="text-sm px-3 py-1 rounded-full bg-primary/20 text-primary-foreground">
+                            {debt.interestRate}% APR
+                          </span>
+                        </div>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                           <div>
-                            <p className="text-sm text-muted-foreground">Type</p>
-                            <p className="font-medium">{debt.name}</p>
-                          </div>
-                          <div>
-                            <p className="text-sm text-muted-foreground">Amount</p>
+                            <p className="text-xs text-muted-foreground">Total Amount</p>
                             <p className="font-medium">${debt.amount.toLocaleString()}</p>
                           </div>
                           <div>
-                            <p className="text-sm text-muted-foreground">Interest Rate</p>
-                            <p className="font-medium">{debt.interestRate}%</p>
-                          </div>
-                          <div>
-                            <p className="text-sm text-muted-foreground">Monthly Payment</p>
+                            <p className="text-xs text-muted-foreground">Monthly Payment</p>
                             <p className="font-medium">${debt.monthlyPayment}</p>
                           </div>
+                          <div className="hidden md:block">
+                            <p className="text-xs text-muted-foreground">Est. Payoff</p>
+                            <p className="font-medium">{Math.ceil(debt.amount / debt.monthlyPayment)} months</p>
+                          </div>
                         </div>
-                        <div className="h-2 bg-muted rounded-full">
+                        <div className="h-2 bg-secondary rounded-full overflow-hidden">
                           <div
-                            className="h-2 bg-primary rounded-full"
+                            className="h-2 progress-gradient rounded-full"
                             style={{ width: "40%" }}
                           />
                         </div>
@@ -293,18 +343,23 @@ const Index = () => {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="glass-card border-none shadow-lg">
                 <CardHeader>
                   <CardTitle>Debt Payoff Strategy</CardTitle>
                   <CardDescription>Recommended approach for faster debt repayment</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-2 text-sm">
-                    <p>Recommended Strategy: Debt Avalanche (Highest Interest First)</p>
-                    <p className="text-muted-foreground">
-                      Focus on paying off your credit card debt first while maintaining minimum payments on other debts.
-                      This could save you approximately $1,200 in interest over the next year.
-                    </p>
+                  <div className="p-4 bg-secondary/30 rounded-lg border border-secondary/50">
+                    <div className="flex gap-2 items-start">
+                      <Lightbulb className="h-5 w-5 text-primary mt-0.5" />
+                      <div className="space-y-2">
+                        <p className="font-medium">Recommended Strategy: Debt Avalanche (Highest Interest First)</p>
+                        <p className="text-sm text-muted-foreground">
+                          Focus on paying off your credit card debt first while maintaining minimum payments on other debts.
+                          This could save you approximately $1,200 in interest over the next year.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -312,8 +367,8 @@ const Index = () => {
           </TabsContent>
 
           <TabsContent value="scenarios" className="animate-in">
-            <div className="space-y-4">
-              <Card>
+            <div className="space-y-6">
+              <Card className="glass-card border-none shadow-lg">
                 <CardHeader>
                   <CardTitle>Net Worth Projections</CardTitle>
                   <CardDescription>Compare different financial scenarios</CardDescription>
@@ -322,33 +377,39 @@ const Index = () => {
                   <div className="h-[300px]">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={scenarioData}>
-                        <XAxis dataKey="month" />
-                        <YAxis />
-                        <Tooltip />
-                        <Line type="monotone" dataKey="baseline" stroke="#0088FE" name="Baseline" strokeWidth={2} />
-                        <Line type="monotone" dataKey="optimistic" stroke="#00C49F" name="Optimistic" strokeWidth={2} />
-                        <Line type="monotone" dataKey="conservative" stroke="#FF8042" name="Conservative" strokeWidth={2} />
+                        <XAxis dataKey="month" stroke="#888" />
+                        <YAxis stroke="#888" />
+                        <Tooltip 
+                          contentStyle={{ backgroundColor: 'rgba(30, 30, 40, 0.8)', borderColor: 'rgba(255, 255, 255, 0.1)' }}
+                          labelStyle={{ color: '#fff' }}
+                        />
+                        <Line type="monotone" dataKey="baseline" stroke="#48BEFF" name="Baseline" strokeWidth={3} dot={{ stroke: '#48BEFF', strokeWidth: 2, r: 4 }} />
+                        <Line type="monotone" dataKey="optimistic" stroke="#4ECDC4" name="Optimistic" strokeWidth={3} dot={{ stroke: '#4ECDC4', strokeWidth: 2, r: 4 }} />
+                        <Line type="monotone" dataKey="conservative" stroke="#FF6B6B" name="Conservative" strokeWidth={3} dot={{ stroke: '#FF6B6B', strokeWidth: 2, r: 4 }} />
                       </LineChart>
                     </ResponsiveContainer>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="glass-card border-none shadow-lg">
                 <CardHeader>
-                  <CardTitle>AI Insights</CardTitle>
+                  <CardTitle className="flex items-center gap-2">
+                    <Lightbulb className="h-5 w-5 text-primary" />
+                    AI Insights
+                  </CardTitle>
                   <CardDescription>Generated recommendations based on your scenarios</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <div className="p-4 bg-muted rounded-lg">
+                    <div className="p-4 bg-secondary/30 rounded-lg border border-secondary/50">
                       <h4 className="font-medium mb-2">Optimistic Scenario</h4>
                       <p className="text-sm text-muted-foreground">
                         If you increase your monthly investment by 10% and maintain current spending levels,
                         your net worth could grow to $84,000 by next year.
                       </p>
                     </div>
-                    <div className="p-4 bg-muted rounded-lg">
+                    <div className="p-4 bg-secondary/30 rounded-lg border border-secondary/50">
                       <h4 className="font-medium mb-2">Risk Analysis</h4>
                       <p className="text-sm text-muted-foreground">
                         Even in a conservative scenario, your emergency fund provides 4 months of coverage,
@@ -364,10 +425,10 @@ const Index = () => {
       </div>
 
       <Button
-        className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg"
+        className="fixed bottom-6 right-6 h-14 w-14 rounded-full ai-chat-button border-none"
         onClick={() => setShowAIChat(!showAIChat)}
       >
-        <MessageCircle className="h-6 w-6" />
+        <MessageCircle className="h-6 w-6 text-white" />
       </Button>
     </div>
   );
