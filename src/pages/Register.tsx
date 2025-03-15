@@ -1,37 +1,53 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PhoneStep from "@/components/registration/PhoneStep";
+import ContactDetailsStep from "@/components/registration/ContactDetailsStep";
 import VerifyOtpStep from "@/components/registration/VerifyOtpStep";
-import BasicInfoStep from "@/components/registration/BasicInfoStep";
-import FinancialDetailsStep from "@/components/registration/FinancialDetailsStep";
-import GoalsAndRiskStep from "@/components/registration/GoalsAndRiskStep";
+import PersonnelInfoStep from "@/components/registration/PersonnelInfoStep";
+import InvestmentsStep from "@/components/registration/InvestmentsStep";
+import DebtStep from "@/components/registration/DebtStep";
+import GoalsStep from "@/components/registration/GoalsStep";
 import SuccessStep from "@/components/registration/SuccessStep";
 
 const Register = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
-    phone: "",
+    // Contact details
     name: "",
+    phone: "",
     email: "",
     age: "",
-    gender: "",
+    
+    // Personnel info
     salary: "",
     marital_status: "",
     kids: "0",
     job_stability: "",
     savings: "",
-    debt: "",
-    monthly_expenses: {
-      rent: "",
-      food: "",
-      outings: "",
-      school_fees: "",
-      self_care: "",
+    emergency_fund: "",
+    
+    // Investments
+    investments: {
+      equity: "",
+      gold: "",
+      etf: "",
+      crypto: "",
+      real_estate: "",
+      fixed_deposits: "",
       others: ""
     },
-    emergency_fund: "",
+    
+    // Debts
+    debts: [
+      { name: "Credit Card", amount: "", interest_rate: "", monthly_payment: "" },
+      { name: "Home Loan", amount: "", interest_rate: "", monthly_payment: "" },
+      { name: "Personal Loan", amount: "", interest_rate: "", monthly_payment: "" },
+      { name: "Education Loan", amount: "", interest_rate: "", monthly_payment: "" },
+      { name: "Car Loan", amount: "", interest_rate: "", monthly_payment: "" }
+    ],
+    
+    // Goals
     short_term_goals: "",
     long_term_goals: "",
     risk_tolerance: "",
@@ -58,8 +74,8 @@ const Register = () => {
     switch (currentStep) {
       case 1:
         return (
-          <PhoneStep
-            phone={formData.phone}
+          <ContactDetailsStep
+            formData={formData}
             updateFormData={updateFormData}
             nextStep={nextStep}
             prevStep={prevStep}
@@ -75,7 +91,7 @@ const Register = () => {
         );
       case 3:
         return (
-          <BasicInfoStep
+          <PersonnelInfoStep
             formData={formData}
             updateFormData={updateFormData}
             nextStep={nextStep}
@@ -84,7 +100,7 @@ const Register = () => {
         );
       case 4:
         return (
-          <FinancialDetailsStep
+          <InvestmentsStep
             formData={formData}
             updateFormData={updateFormData}
             nextStep={nextStep}
@@ -93,7 +109,7 @@ const Register = () => {
         );
       case 5:
         return (
-          <GoalsAndRiskStep
+          <DebtStep
             formData={formData}
             updateFormData={updateFormData}
             nextStep={nextStep}
@@ -101,9 +117,18 @@ const Register = () => {
           />
         );
       case 6:
+        return (
+          <GoalsStep
+            formData={formData}
+            updateFormData={updateFormData}
+            nextStep={nextStep}
+            prevStep={prevStep}
+          />
+        );
+      case 7:
         return <SuccessStep navigate={navigate} />;
       default:
-        return <PhoneStep phone={formData.phone} updateFormData={updateFormData} nextStep={nextStep} prevStep={prevStep} />;
+        return <ContactDetailsStep formData={formData} updateFormData={updateFormData} nextStep={nextStep} prevStep={prevStep} />;
     }
   };
 
