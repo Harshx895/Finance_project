@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import { ArrowRight, ArrowLeft } from "lucide-react";
+import { ArrowRight, ArrowLeft, Clock } from "lucide-react";
 
 interface VerifyOtpStepProps {
   phone: string;
@@ -55,7 +55,7 @@ const VerifyOtpStep: React.FC<VerifyOtpStepProps> = ({ phone, nextStep, prevStep
         variant="ghost" 
         size="icon"
         onClick={prevStep}
-        className="absolute left-4 top-4"
+        className="absolute left-4 top-4 hover:bg-secondary/60"
       >
         <ArrowLeft className="h-4 w-4" />
       </Button>
@@ -75,7 +75,7 @@ const VerifyOtpStep: React.FC<VerifyOtpStepProps> = ({ phone, nextStep, prevStep
             placeholder="Enter 4-digit OTP"
             value={otp}
             onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').substring(0, 4))}
-            className="py-6 text-center text-xl tracking-widest"
+            className="py-6 text-center text-xl tracking-widest bg-secondary/40 border-secondary"
             maxLength={4}
             inputMode="numeric"
             required
@@ -84,14 +84,15 @@ const VerifyOtpStep: React.FC<VerifyOtpStepProps> = ({ phone, nextStep, prevStep
         
         <Button
           type="submit"
-          className="ai-chat-button w-full"
+          className="ai-chat-button w-full flex items-center gap-2"
           disabled={loading || otp.length !== 4}
         >
           {loading ? "Verifying..." : "Verify & Continue"}
           <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
         
-        <div className="text-center mt-2">
+        <div className="text-center mt-2 flex items-center justify-center gap-2">
+          {timer > 0 && <Clock className="h-4 w-4 text-muted-foreground" />}
           <button
             type="button"
             className={`text-sm ${

@@ -157,10 +157,10 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-background via-secondary/50">
+    <div className="min-h-screen bg-gradient-to-br from-background to-background/70 via-secondary/20">
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-lg mx-auto mb-8">
-          <div className="w-full bg-secondary/50 h-2 rounded-full overflow-hidden">
+          <div className="w-full bg-secondary/40 h-2 rounded-full overflow-hidden">
             <div 
               className="h-full progress-gradient transition-all duration-300 ease-out"
               style={{ width: `${getProgressPercentage()}%` }}

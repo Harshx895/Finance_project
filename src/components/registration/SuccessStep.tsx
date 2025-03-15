@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, ArrowRight } from "lucide-react";
 
 interface SuccessStepProps {
   navigate: (path: string) => void;
@@ -24,15 +24,16 @@ const SuccessStep: React.FC<SuccessStepProps> = ({ navigate }) => {
         
         <div className="mt-8 space-y-4 w-full">
           <Button 
-            className="ai-chat-button w-full" 
+            className="ai-chat-button w-full flex items-center gap-2" 
             onClick={() => navigate("/")}
           >
             Go to Dashboard
+            <ArrowRight className="h-4 w-4" />
           </Button>
           
           <Button 
             variant="outline" 
-            className="w-full" 
+            className="w-full border-gray-600" 
             onClick={() => navigate("/login")}
           >
             Sign out
