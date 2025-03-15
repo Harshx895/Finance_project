@@ -14,7 +14,7 @@ interface GoalsAndRiskStepProps {
     risk_tolerance: string;
     habits: string;
   };
-  updateFormData: (data: Partial<typeof formData>) => void;
+  updateFormData: (data: Partial<GoalsAndRiskStepProps['formData']>) => void;
   nextStep: () => void;
   prevStep: () => void;
 }

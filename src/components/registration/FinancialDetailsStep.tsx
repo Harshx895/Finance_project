@@ -24,7 +24,7 @@ interface FinancialDetailsStepProps {
     };
     emergency_fund: string;
   };
-  updateFormData: (data: Partial<typeof formData>) => void;
+  updateFormData: (data: Partial<FinancialDetailsStepProps['formData']>) => void;
   nextStep: () => void;
   prevStep: () => void;
 }

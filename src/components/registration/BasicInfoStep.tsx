@@ -14,7 +14,7 @@ interface BasicInfoStepProps {
     age: string;
     gender: string;
   };
-  updateFormData: (data: Partial<typeof formData>) => void;
+  updateFormData: (data: Partial<BasicInfoStepProps['formData']>) => void;
   nextStep: () => void;
   prevStep: () => void;
 }
