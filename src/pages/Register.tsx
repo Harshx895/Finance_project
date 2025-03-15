@@ -80,6 +80,11 @@ const Register = () => {
     }
   };
 
+  const getProgressPercentage = () => {
+    const totalSteps = 8;
+    return (currentStep / totalSteps) * 100;
+  };
+
   const renderStep = () => {
     switch (currentStep) {
       case 1:
@@ -152,8 +157,20 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-background to-background via-secondary/50">
       <div className="container mx-auto px-4 py-8">
+        <div className="max-w-lg mx-auto mb-8">
+          <div className="w-full bg-secondary/50 h-2 rounded-full overflow-hidden">
+            <div 
+              className="h-full progress-gradient transition-all duration-300 ease-out"
+              style={{ width: `${getProgressPercentage()}%` }}
+            ></div>
+          </div>
+          <div className="mt-2 flex justify-between text-xs text-muted-foreground">
+            <span>Step {currentStep} of 8</span>
+            <span>{Math.round(getProgressPercentage())}% Complete</span>
+          </div>
+        </div>
         <div className="flex justify-center">
           {renderStep()}
         </div>
