@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import ContactDetailsStep from "@/components/registration/ContactDetailsStep";
 import VerifyOtpStep from "@/components/registration/VerifyOtpStep";
 import PersonnelInfoStep from "@/components/registration/PersonnelInfoStep";
+import ExpensesStep from "@/components/registration/ExpensesStep";
 import InvestmentsStep from "@/components/registration/InvestmentsStep";
 import DebtStep from "@/components/registration/DebtStep";
 import GoalsStep from "@/components/registration/GoalsStep";
@@ -26,6 +27,15 @@ const Register = () => {
     job_stability: "",
     savings: "",
     emergency_fund: "",
+    
+    // Monthly expenses
+    expenses: [
+      { name: "Rent/Mortgage", amount: "" },
+      { name: "Food/Groceries", amount: "" },
+      { name: "Transportation", amount: "" },
+      { name: "Utilities", amount: "" },
+      { name: "Entertainment", amount: "" }
+    ],
     
     // Investments
     investments: {
@@ -100,7 +110,7 @@ const Register = () => {
         );
       case 4:
         return (
-          <InvestmentsStep
+          <ExpensesStep
             formData={formData}
             updateFormData={updateFormData}
             nextStep={nextStep}
@@ -109,7 +119,7 @@ const Register = () => {
         );
       case 5:
         return (
-          <DebtStep
+          <InvestmentsStep
             formData={formData}
             updateFormData={updateFormData}
             nextStep={nextStep}
@@ -118,7 +128,7 @@ const Register = () => {
         );
       case 6:
         return (
-          <GoalsStep
+          <DebtStep
             formData={formData}
             updateFormData={updateFormData}
             nextStep={nextStep}
@@ -126,6 +136,15 @@ const Register = () => {
           />
         );
       case 7:
+        return (
+          <GoalsStep
+            formData={formData}
+            updateFormData={updateFormData}
+            nextStep={nextStep}
+            prevStep={prevStep}
+          />
+        );
+      case 8:
         return <SuccessStep navigate={navigate} />;
       default:
         return <ContactDetailsStep formData={formData} updateFormData={updateFormData} nextStep={nextStep} prevStep={prevStep} />;
