@@ -9,7 +9,7 @@ interface SuccessStepProps {
 
 const SuccessStep: React.FC<SuccessStepProps> = ({ navigate }) => {
   return (
-    <div className="glass-card max-w-md w-full p-8 animated-card text-center">
+    <div className="glass-card max-w-md w-full p-8 animate-in text-center">
       <div className="flex flex-col items-center justify-center space-y-4">
         <div className="rounded-full bg-primary/20 p-3">
           <CheckCircle className="h-12 w-12 text-primary" />
@@ -24,7 +24,7 @@ const SuccessStep: React.FC<SuccessStepProps> = ({ navigate }) => {
         
         <div className="mt-8 space-y-4 w-full">
           <Button 
-            className="w-full flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90" 
+            className="ai-chat-button w-full flex items-center gap-2" 
             onClick={() => navigate("/")}
           >
             Go to Dashboard
