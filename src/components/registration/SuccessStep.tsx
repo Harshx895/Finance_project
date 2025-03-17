@@ -33,7 +33,7 @@ const SuccessStep: React.FC<SuccessStepProps> = ({ navigate }) => {
           
           <Button 
             variant="outline" 
-            className="w-full border-gray-600" 
+            className="w-full border-gray-600 hover:border-primary/50 hover:bg-primary/10" 
             onClick={() => navigate("/login")}
           >
             Sign out

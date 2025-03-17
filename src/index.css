@@ -5,19 +5,19 @@
 
 @layer base {
   :root {
-    --background: 225 25% 10%;
+    --background: 240 20% 3%;
     --foreground: 0 0% 95%;
-    --card: 230 20% 15%;
+    --card: 230 20% 5%;
     --card-foreground: 0 0% 95%;
-    --popover: 230 20% 15%;
+    --popover: 230 20% 5%;
     --popover-foreground: 0 0% 95%;
-    --primary: 346.8 77.2% 49.8%;
-    --primary-foreground: 355.7 100% 97.3%;
-    --secondary: 240 10% 20%;
+    --primary: 220 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 10% 15%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 240 10% 20%;
+    --muted: 240 10% 15%;
     --muted-foreground: 240 5% 74.9%;
-    --accent: 346.8 77.2% 49.8%;
+    --accent: 220 100% 50%;
     --accent-foreground: 0 0% 98%;
     --success: 142.1 76.2% 36.3%;
     --success-foreground: 355.7 100% 97.3%;
@@ -25,9 +25,9 @@
     --warning-foreground: 48 96% 89%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 10% 20%;
-    --input: 240 10% 20%;
-    --ring: 346.8 77.2% 49.8%;
+    --border: 240 10% 15%;
+    --input: 240 10% 15%;
+    --ring: 220 100% 50%;
     --radius: 1.25rem;
   }
 }
@@ -42,19 +42,19 @@
 }
 
 .glass-card {
-  background: rgba(30, 30, 40, 0.5);
+  background: rgba(10, 10, 20, 0.5);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(50, 50, 60, 0.18);
+  border: 1px solid rgba(49, 111, 246, 0.15);
   border-radius: var(--radius);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .metric-card {
-  background: linear-gradient(135deg, rgba(40, 40, 60, 0.9), rgba(30, 30, 40, 0.7));
+  background: linear-gradient(135deg, rgba(15, 15, 25, 0.9), rgba(10, 10, 15, 0.7));
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(50, 50, 60, 0.18);
+  border: 1px solid rgba(49, 111, 246, 0.15);
   border-radius: var(--radius);
   transition: all 0.3s ease;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
@@ -81,25 +81,25 @@
 }
 
 .tab-active {
-  background: linear-gradient(135deg, var(--primary), #ff4d79);
+  background: linear-gradient(135deg, #316FF6, #4d88ff);
   color: white;
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 100, 130, 0.3);
+  box-shadow: 0 5px 15px rgba(49, 111, 246, 0.3);
 }
 
 .ai-chat-button {
-  background: linear-gradient(135deg, var(--primary), #ff4d79);
-  box-shadow: 0 5px 15px rgba(255, 100, 130, 0.3);
+  background: linear-gradient(135deg, #316FF6, #4d88ff);
+  box-shadow: 0 5px 15px rgba(49, 111, 246, 0.3);
   transition: all 0.3s ease;
 }
 
 .ai-chat-button:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(255, 100, 130, 0.4);
+  box-shadow: 0 8px 20px rgba(49, 111, 246, 0.4);
 }
 
 .progress-gradient {
-  background: linear-gradient(90deg, var(--primary), #ff4d79);
+  background: linear-gradient(90deg, #316FF6, #4d88ff);
 }
 
 .scrollbar-none {
@@ -112,14 +112,14 @@
 }
 
 .chart-container {
-  background: rgba(30, 30, 40, 0.7);
+  background: rgba(10, 10, 20, 0.7);
   border-radius: var(--radius);
   padding: 1rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
 }
 
 .data-card {
-  background: linear-gradient(145deg, rgba(40, 40, 60, 0.9), rgba(30, 30, 40, 0.7));
+  background: linear-gradient(145deg, rgba(15, 15, 25, 0.9), rgba(10, 10, 15, 0.7));
   border-radius: var(--radius);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.16);
   transition: all 0.3s ease;
@@ -136,6 +136,6 @@
   
   .tab-active {
     transform: translateY(-1px);
-    box-shadow: 0 3px 8px rgba(255, 100, 130, 0.3);
+    box-shadow: 0 3px 8px rgba(49, 111, 246, 0.3);
   }
 }
