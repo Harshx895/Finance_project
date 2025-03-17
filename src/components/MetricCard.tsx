@@ -9,6 +9,9 @@ interface MetricCardProps {
   percentage?: number;
   color?: string;
   className?: string;
+  overdue?: boolean;
+  buttonText?: string;
+  onClick?: () => void;
 }
 
 export const MetricCard = ({
@@ -17,12 +20,20 @@ export const MetricCard = ({
   percentage,
   color = "bg-primary",
   className,
+  overdue = false,
+  buttonText,
+  onClick,
 }: MetricCardProps) => {
   return (
     <Card className={cn("metric-card overflow-hidden border-none shadow-lg", className)}>
       <CardContent className="p-4 md:p-6 relative">
         <div className="space-y-2 md:space-y-3">
-          <p className="text-xs md:text-sm text-muted-foreground">{title}</p>
+          <div className="flex justify-between items-center">
+            <p className="text-xs md:text-sm text-muted-foreground uppercase">{title}</p>
+            {overdue && (
+              <span className="text-xs uppercase font-bold text-destructive">OVERDUE</span>
+            )}
+          </div>
           <div className="flex items-center justify-between">
             <p className="text-lg md:text-2xl font-bold">{value}</p>
             {percentage !== undefined && (
@@ -38,6 +49,14 @@ export const MetricCard = ({
               </div>
             )}
           </div>
+          {buttonText && (
+            <button 
+              onClick={onClick} 
+              className="mt-2 bg-black text-white text-sm px-4 py-2 rounded-full"
+            >
+              {buttonText}
+            </button>
+          )}
         </div>
       </CardContent>
     </Card>

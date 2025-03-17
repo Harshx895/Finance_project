@@ -5,19 +5,19 @@
 
 @layer base {
   :root {
-    --background: 240 20% 3%;
+    --background: 220 10% 8%;
     --foreground: 0 0% 95%;
-    --card: 230 20% 5%;
+    --card: 220 10% 12%;
     --card-foreground: 0 0% 95%;
-    --popover: 230 20% 5%;
+    --popover: 220 10% 12%;
     --popover-foreground: 0 0% 95%;
-    --primary: 220 100% 50%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 196 100% 80%;
+    --primary-foreground: 0 0% 10%;
     --secondary: 240 10% 15%;
     --secondary-foreground: 0 0% 98%;
     --muted: 240 10% 15%;
     --muted-foreground: 240 5% 74.9%;
-    --accent: 220 100% 50%;
+    --accent: 262 83% 68%;
     --accent-foreground: 0 0% 98%;
     --success: 142.1 76.2% 36.3%;
     --success-foreground: 355.7 100% 97.3%;
@@ -25,10 +25,10 @@
     --warning-foreground: 48 96% 89%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 10% 15%;
-    --input: 240 10% 15%;
-    --ring: 220 100% 50%;
-    --radius: 1.25rem;
+    --border: 240 10% 18%;
+    --input: 240 10% 18%;
+    --ring: 196 100% 80%;
+    --radius: 1rem;
   }
 }
 
@@ -42,22 +42,21 @@
 }
 
 .glass-card {
-  background: rgba(10, 10, 20, 0.5);
+  background: rgba(25, 26, 30, 0.7);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(49, 111, 246, 0.15);
+  border: 1px solid rgba(70, 70, 90, 0.2);
   border-radius: var(--radius);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .metric-card {
-  background: linear-gradient(135deg, rgba(15, 15, 25, 0.9), rgba(10, 10, 15, 0.7));
+  background: rgba(25, 26, 30, 0.8);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(49, 111, 246, 0.15);
+  border: 1px solid rgba(70, 70, 90, 0.2);
   border-radius: var(--radius);
   transition: all 0.3s ease;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
 }
 
 .metric-card:hover {
@@ -65,11 +64,11 @@
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.22);
 }
 
-.animate-in {
-  animation: animate-in 0.5s ease-out;
+.animated-card {
+  animation: fadeIn 0.5s ease-out;
 }
 
-@keyframes animate-in {
+@keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(10px);
@@ -81,25 +80,25 @@
 }
 
 .tab-active {
-  background: linear-gradient(135deg, #316FF6, #4d88ff);
+  background: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent)/0.8));
   color: white;
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(49, 111, 246, 0.3);
+  box-shadow: 0 5px 15px rgba(128, 90, 230, 0.3);
 }
 
 .ai-chat-button {
-  background: linear-gradient(135deg, #316FF6, #4d88ff);
-  box-shadow: 0 5px 15px rgba(49, 111, 246, 0.3);
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary)/0.8));
+  box-shadow: 0 5px 15px rgba(90, 200, 230, 0.3);
   transition: all 0.3s ease;
 }
 
 .ai-chat-button:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(49, 111, 246, 0.4);
+  box-shadow: 0 8px 20px rgba(90, 200, 230, 0.4);
 }
 
 .progress-gradient {
-  background: linear-gradient(90deg, #316FF6, #4d88ff);
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary)/0.7));
 }
 
 .scrollbar-none {
@@ -112,14 +111,14 @@
 }
 
 .chart-container {
-  background: rgba(10, 10, 20, 0.7);
+  background: rgba(25, 26, 30, 0.7);
   border-radius: var(--radius);
   padding: 1rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
 }
 
 .data-card {
-  background: linear-gradient(145deg, rgba(15, 15, 25, 0.9), rgba(10, 10, 15, 0.7));
+  background: linear-gradient(145deg, rgba(25, 26, 30, 0.9), rgba(15, 16, 20, 0.7));
   border-radius: var(--radius);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.16);
   transition: all 0.3s ease;
@@ -129,6 +128,50 @@
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
 }
 
+.feature-card {
+  background: hsl(var(--accent));
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.feature-card.blue {
+  background: hsl(196 100% 50%);
+}
+
+.feature-card.purple {
+  background: hsl(262 83% 68%);
+}
+
+.feature-card.mint {
+  background: hsl(170 83% 68%);
+}
+
+.feature-card.orange {
+  background: hsl(30 83% 68%);
+}
+
+.payment-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.bottom-nav {
+  background: rgba(20, 20, 22, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-pill {
+  border-radius: 9999px;
+  background: hsl(var(--accent));
+  color: white;
+}
+
 @media (max-width: 640px) {
   .glass-card {
     border-radius: calc(var(--radius) - 0.25rem);
@@ -136,6 +179,6 @@
   
   .tab-active {
     transform: translateY(-1px);
-    box-shadow: 0 3px 8px rgba(49, 111, 246, 0.3);
+    box-shadow: 0 3px 8px rgba(128, 90, 230, 0.3);
   }
 }
