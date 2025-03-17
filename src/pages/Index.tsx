@@ -72,7 +72,7 @@ const Index = () => {
             <p className="text-sm md:text-base text-muted-foreground">Your finances are looking good today</p>
           </div>
           <div className="flex items-center gap-3">
-            <div className="h-9 w-9 md:h-10 md:w-10 rounded-full bg-secondary flex items-center justify-center">
+            <div className="h-9 w-9 md:h-10 md:w-10 rounded-full bg-primary/20 flex items-center justify-center">
               <User className="h-4 w-4 md:h-5 md:w-5 text-primary" />
             </div>
             <ChevronDown className="h-3 w-3 md:h-4 md:w-4 text-muted-foreground" />
@@ -81,7 +81,7 @@ const Index = () => {
 
         <Tabs defaultValue="dashboard" className="space-y-6 md:space-y-8">
           <div className="relative overflow-auto pb-1">
-            <TabsList className="inline-flex w-full md:w-auto p-1 gap-1 bg-secondary rounded-full overflow-x-auto scrollbar-none">
+            <TabsList className="inline-flex w-full md:w-auto p-1 gap-1 bg-primary/10 rounded-full overflow-x-auto scrollbar-none">
               <TabsTrigger value="dashboard" className="rounded-full whitespace-nowrap data-[state=active]:tab-active">
                 <BarChart3 className="h-4 w-4 mr-1 md:mr-2" />
                 <span className="md:inline">Dashboard</span>
@@ -111,25 +111,25 @@ const Index = () => {
                 title="Net Worth"
                 value="$58,000"
                 percentage={8}
-                color="bg-[#FF6B6B]"
+                color="bg-primary"
               />
               <MetricCard
                 title="Monthly Savings"
                 value="$2,500"
                 percentage={15}
-                color="bg-[#48BEFF]"
+                color="bg-primary"
               />
               <MetricCard
                 title="Total Investments"
                 value="$25,000"
                 percentage={12}
-                color="bg-[#4ECDC4]"
+                color="bg-primary"
                 className="sm:col-span-2 md:col-span-1"
               />
             </div>
 
             <div className="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-2">
-              <Card className="glass-card border-none shadow-lg">
+              <Card className="glass-card border-none shadow-lg bg-primary/10">
                 <CardHeader className="p-4 md:p-6">
                   <CardTitle className="text-lg md:text-2xl">Net Worth Trend</CardTitle>
                   <CardDescription>Your financial growth over time</CardDescription>
@@ -141,17 +141,17 @@ const Index = () => {
                         <XAxis dataKey="month" stroke="#888" fontSize={12} tickLine={false} axisLine={false} />
                         <YAxis stroke="#888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `$${value/1000}k`} />
                         <Tooltip 
-                          contentStyle={{ backgroundColor: 'rgba(30, 30, 40, 0.8)', borderColor: 'rgba(255, 255, 255, 0.1)' }}
+                          contentStyle={{ backgroundColor: 'rgba(10, 10, 20, 0.8)', borderColor: 'rgba(49, 111, 246, 0.2)' }}
                           labelStyle={{ color: '#fff' }}
                           formatter={(value) => [`$${value}`, 'Value']}
                         />
                         <Line
                           type="monotone"
                           dataKey="value"
-                          stroke="#FF6B6B"
+                          stroke="#316FF6"
                           strokeWidth={3}
-                          dot={{ stroke: '#FF6B6B', strokeWidth: 2, r: 4 }}
-                          activeDot={{ stroke: '#FF6B6B', strokeWidth: 3, r: 6 }}
+                          dot={{ stroke: '#316FF6', strokeWidth: 2, r: 4 }}
+                          activeDot={{ stroke: '#316FF6', strokeWidth: 3, r: 6 }}
                         />
                       </LineChart>
                     </ResponsiveContainer>
@@ -159,7 +159,7 @@ const Index = () => {
                 </CardContent>
               </Card>
 
-              <Card className="glass-card border-none shadow-lg">
+              <Card className="glass-card border-none shadow-lg bg-primary/10">
                 <CardHeader className="p-4 md:p-6">
                   <CardTitle className="text-lg md:text-2xl">Expense Breakdown</CardTitle>
                   <CardDescription>
@@ -189,7 +189,7 @@ const Index = () => {
                           ))}
                         </Pie>
                         <Tooltip 
-                          contentStyle={{ backgroundColor: 'rgba(30, 30, 40, 0.8)', borderColor: 'rgba(255, 255, 255, 0.1)' }}
+                          contentStyle={{ backgroundColor: 'rgba(10, 10, 20, 0.8)', borderColor: 'rgba(49, 111, 246, 0.2)' }}
                           labelStyle={{ color: '#fff' }}
                           formatter={(value) => [`$${value}`, 'Amount']}
                         />
@@ -204,11 +204,11 @@ const Index = () => {
           <TabsContent value="goals" className="space-y-6 animate-in">
             <div className="grid gap-6">
               {goalData.map((goal, index) => (
-                <Card key={index} className="glass-card border-none shadow-lg overflow-hidden">
+                <Card key={index} className="glass-card border-none shadow-lg bg-primary/10 overflow-hidden">
                   <CardHeader className="pb-2">
                     <div className="flex justify-between items-center">
                       <CardTitle>{goal.name}</CardTitle>
-                      <span className="text-sm px-3 py-1 rounded-full bg-secondary">
+                      <span className="text-sm px-3 py-1 rounded-full bg-primary/20">
                         {goal.deadline}
                       </span>
                     </div>
@@ -226,7 +226,7 @@ const Index = () => {
                           style={{ width: `${(goal.current / goal.target) * 100}%` }}
                         />
                       </div>
-                      <div className="p-3 bg-secondary/50 rounded-lg border border-secondary">
+                      <div className="p-3 bg-primary/10 rounded-lg border border-primary/20">
                         <div className="flex gap-2 items-start">
                           <Lightbulb className="h-5 w-5 text-primary mt-0.5" />
                           <p className="text-sm">
@@ -243,7 +243,7 @@ const Index = () => {
 
           <TabsContent value="investments" className="animate-in">
             <div className="grid gap-6 md:grid-cols-2">
-              <Card className="glass-card border-none shadow-lg">
+              <Card className="glass-card border-none shadow-lg bg-primary/10">
                 <CardHeader>
                   <CardTitle>Portfolio Allocation</CardTitle>
                   <CardDescription>Current investment distribution</CardDescription>
@@ -266,7 +266,7 @@ const Index = () => {
                           ))}
                         </Pie>
                         <Tooltip 
-                          contentStyle={{ backgroundColor: 'rgba(30, 30, 40, 0.8)', borderColor: 'rgba(255, 255, 255, 0.1)' }}
+                          contentStyle={{ backgroundColor: 'rgba(10, 10, 20, 0.8)', borderColor: 'rgba(49, 111, 246, 0.2)' }}
                           labelStyle={{ color: '#fff' }}
                         />
                       </PieChart>
@@ -275,7 +275,7 @@ const Index = () => {
                 </CardContent>
               </Card>
 
-              <Card className="glass-card border-none shadow-lg">
+              <Card className="glass-card border-none shadow-lg bg-primary/10">
                 <CardHeader>
                   <CardTitle>Risk Assessment</CardTitle>
                   <CardDescription>Portfolio risk metrics</CardDescription>
@@ -307,7 +307,7 @@ const Index = () => {
 
           <TabsContent value="debt" className="animate-in">
             <div className="space-y-6">
-              <Card className="glass-card border-none shadow-lg">
+              <Card className="glass-card border-none shadow-lg bg-primary/10">
                 <CardHeader>
                   <CardTitle>Debt Overview</CardTitle>
                   <CardDescription>Track and manage your debts</CardDescription>
@@ -315,7 +315,7 @@ const Index = () => {
                 <CardContent>
                   <div className="space-y-6">
                     {debtData.map((debt, index) => (
-                      <div key={index} className="space-y-3 p-4 bg-secondary/30 rounded-lg border border-secondary/50">
+                      <div key={index} className="space-y-3 p-4 bg-primary/10 rounded-lg border border-primary/20">
                         <div className="flex justify-between items-center">
                           <h3 className="font-semibold">{debt.name}</h3>
                           <span className="text-sm px-3 py-1 rounded-full bg-primary/20 text-primary-foreground">
@@ -348,13 +348,13 @@ const Index = () => {
                 </CardContent>
               </Card>
 
-              <Card className="glass-card border-none shadow-lg">
+              <Card className="glass-card border-none shadow-lg bg-primary/10">
                 <CardHeader>
                   <CardTitle>Debt Payoff Strategy</CardTitle>
                   <CardDescription>Recommended approach for faster debt repayment</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="p-4 bg-secondary/30 rounded-lg border border-secondary/50">
+                  <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
                     <div className="flex gap-2 items-start">
                       <Lightbulb className="h-5 w-5 text-primary mt-0.5" />
                       <div className="space-y-2">
@@ -373,7 +373,7 @@ const Index = () => {
 
           <TabsContent value="scenarios" className="animate-in">
             <div className="space-y-6">
-              <Card className="glass-card border-none shadow-lg">
+              <Card className="glass-card border-none shadow-lg bg-primary/10">
                 <CardHeader>
                   <CardTitle>Net Worth Projections</CardTitle>
                   <CardDescription>Compare different financial scenarios</CardDescription>
@@ -385,19 +385,19 @@ const Index = () => {
                         <XAxis dataKey="month" stroke="#888" />
                         <YAxis stroke="#888" />
                         <Tooltip 
-                          contentStyle={{ backgroundColor: 'rgba(30, 30, 40, 0.8)', borderColor: 'rgba(255, 255, 255, 0.1)' }}
+                          contentStyle={{ backgroundColor: 'rgba(10, 10, 20, 0.8)', borderColor: 'rgba(49, 111, 246, 0.2)' }}
                           labelStyle={{ color: '#fff' }}
                         />
                         <Line type="monotone" dataKey="baseline" stroke="#48BEFF" name="Baseline" strokeWidth={3} dot={{ stroke: '#48BEFF', strokeWidth: 2, r: 4 }} />
                         <Line type="monotone" dataKey="optimistic" stroke="#4ECDC4" name="Optimistic" strokeWidth={3} dot={{ stroke: '#4ECDC4', strokeWidth: 2, r: 4 }} />
-                        <Line type="monotone" dataKey="conservative" stroke="#FF6B6B" name="Conservative" strokeWidth={3} dot={{ stroke: '#FF6B6B', strokeWidth: 2, r: 4 }} />
+                        <Line type="monotone" dataKey="conservative" stroke="#316FF6" name="Conservative" strokeWidth={3} dot={{ stroke: '#316FF6', strokeWidth: 2, r: 4 }} />
                       </LineChart>
                     </ResponsiveContainer>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="glass-card border-none shadow-lg">
+              <Card className="glass-card border-none shadow-lg bg-primary/10">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Lightbulb className="h-5 w-5 text-primary" />
@@ -407,14 +407,14 @@ const Index = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <div className="p-4 bg-secondary/30 rounded-lg border border-secondary/50">
+                    <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
                       <h4 className="font-medium mb-2">Optimistic Scenario</h4>
                       <p className="text-sm text-muted-foreground">
                         If you increase your monthly investment by 10% and maintain current spending levels,
                         your net worth could grow to $84,000 by next year.
                       </p>
                     </div>
-                    <div className="p-4 bg-secondary/30 rounded-lg border border-secondary/50">
+                    <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
                       <h4 className="font-medium mb-2">Risk Analysis</h4>
                       <p className="text-sm text-muted-foreground">
                         Even in a conservative scenario, your emergency fund provides 4 months of coverage,
