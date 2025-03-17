@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer, XAxis, YAxis, Tooltip, BarChart, Bar } from 'recharts';
-import { MessageCircle, User, ChevronDown, TrendingUp, Wallet, CreditCard, BarChart3, Target, Lightbulb } from "lucide-react";
+import { MessageCircle, User, ChevronDown, TrendingUp, Wallet, CreditCard, BarChart3, Target, Lightbulb, Home, Layout, DollarSign, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const dummyNetWorthData = [
@@ -111,19 +111,22 @@ const Index = () => {
                 title="Net Worth"
                 value="$58,000"
                 percentage={8}
-                color="bg-[#FF6B6B]"
+                color="bg-white/20"
+                bgClass="card-blue"
               />
               <MetricCard
                 title="Monthly Savings"
                 value="$2,500"
                 percentage={15}
-                color="bg-[#48BEFF]"
+                color="bg-white/20"
+                bgClass="card-green"
               />
               <MetricCard
                 title="Total Investments"
                 value="$25,000"
                 percentage={12}
-                color="bg-[#4ECDC4]"
+                color="bg-white/20"
+                bgClass="card-purple"
                 className="sm:col-span-2 md:col-span-1"
               />
             </div>
@@ -148,10 +151,10 @@ const Index = () => {
                         <Line
                           type="monotone"
                           dataKey="value"
-                          stroke="#FF6B6B"
+                          stroke="#3295e8"
                           strokeWidth={3}
-                          dot={{ stroke: '#FF6B6B', strokeWidth: 2, r: 4 }}
-                          activeDot={{ stroke: '#FF6B6B', strokeWidth: 3, r: 6 }}
+                          dot={{ stroke: '#3295e8', strokeWidth: 2, r: 4 }}
+                          activeDot={{ stroke: '#3295e8', strokeWidth: 3, r: 6 }}
                         />
                       </LineChart>
                     </ResponsiveContainer>
@@ -204,32 +207,32 @@ const Index = () => {
           <TabsContent value="goals" className="space-y-6 animate-in">
             <div className="grid gap-6">
               {goalData.map((goal, index) => (
-                <Card key={index} className="glass-card border-none shadow-lg overflow-hidden">
+                <Card key={index} className={`glass-card border-none shadow-lg overflow-hidden ${index === 0 ? 'card-teal' : index === 1 ? 'card-purple' : 'card-orange'}`}>
                   <CardHeader className="pb-2">
                     <div className="flex justify-between items-center">
-                      <CardTitle>{goal.name}</CardTitle>
-                      <span className="text-sm px-3 py-1 rounded-full bg-secondary">
+                      <CardTitle className="text-white">{goal.name}</CardTitle>
+                      <span className="text-sm px-3 py-1 rounded-full bg-white/20 text-white">
                         {goal.deadline}
                       </span>
                     </div>
-                    <CardDescription>Target: ${goal.target.toLocaleString()}</CardDescription>
+                    <CardDescription className="text-white/70">Target: ${goal.target.toLocaleString()}</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
-                      <div className="flex justify-between text-sm">
+                      <div className="flex justify-between text-sm text-white/90">
                         <span>Current: ${goal.current.toLocaleString()}</span>
                         <span className="font-medium">{Math.round((goal.current / goal.target) * 100)}%</span>
                       </div>
-                      <div className="h-2 bg-secondary rounded-full overflow-hidden">
+                      <div className="h-2 bg-white/20 rounded-full overflow-hidden">
                         <div
-                          className="h-2 progress-gradient rounded-full transition-all"
+                          className="h-2 rounded-full bg-white/70"
                           style={{ width: `${(goal.current / goal.target) * 100}%` }}
                         />
                       </div>
-                      <div className="p-3 bg-secondary/50 rounded-lg border border-secondary">
+                      <div className="p-3 bg-white/10 rounded-lg border border-white/10">
                         <div className="flex gap-2 items-start">
-                          <Lightbulb className="h-5 w-5 text-primary mt-0.5" />
-                          <p className="text-sm">
+                          <Lightbulb className="h-5 w-5 text-white mt-0.5" />
+                          <p className="text-sm text-white/90">
                             AI Tip: Increase your monthly contribution by $100 to reach your goal 2 months earlier.
                           </p>
                         </div>
@@ -243,10 +246,10 @@ const Index = () => {
 
           <TabsContent value="investments" className="animate-in">
             <div className="grid gap-6 md:grid-cols-2">
-              <Card className="glass-card border-none shadow-lg">
+              <Card className="glass-card border-none shadow-lg card-purple bg-opacity-80">
                 <CardHeader>
-                  <CardTitle>Portfolio Allocation</CardTitle>
-                  <CardDescription>Current investment distribution</CardDescription>
+                  <CardTitle className="text-white">Portfolio Allocation</CardTitle>
+                  <CardDescription className="text-white/70">Current investment distribution</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="h-[300px]">
@@ -275,20 +278,20 @@ const Index = () => {
                 </CardContent>
               </Card>
 
-              <Card className="glass-card border-none shadow-lg">
+              <Card className="glass-card border-none shadow-lg card-teal bg-opacity-80">
                 <CardHeader>
-                  <CardTitle>Risk Assessment</CardTitle>
-                  <CardDescription>Portfolio risk metrics</CardDescription>
+                  <CardTitle className="text-white">Risk Assessment</CardTitle>
+                  <CardDescription className="text-white/70">Portfolio risk metrics</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-5">
                     {investmentData.map((item, index) => (
                       <div key={index} className="space-y-2">
                         <div className="flex justify-between">
-                          <span className="text-sm font-medium">{item.category}</span>
-                          <span className="text-sm text-muted-foreground">${item.value.toLocaleString()} ({item.percentage}%)</span>
+                          <span className="text-sm font-medium text-white">{item.category}</span>
+                          <span className="text-sm text-white/70">${item.value.toLocaleString()} ({item.percentage}%)</span>
                         </div>
-                        <div className="h-2 bg-secondary rounded-full overflow-hidden">
+                        <div className="h-2 bg-white/20 rounded-full overflow-hidden">
                           <div
                             className="h-2 rounded-full"
                             style={{ 
@@ -315,30 +318,30 @@ const Index = () => {
                 <CardContent>
                   <div className="space-y-6">
                     {debtData.map((debt, index) => (
-                      <div key={index} className="space-y-3 p-4 bg-secondary/30 rounded-lg border border-secondary/50">
+                      <div key={index} className={`space-y-3 p-4 rounded-lg border border-white/10 ${index === 0 ? 'card-coral' : index === 1 ? 'card-purple' : 'card-teal'}`}>
                         <div className="flex justify-between items-center">
-                          <h3 className="font-semibold">{debt.name}</h3>
-                          <span className="text-sm px-3 py-1 rounded-full bg-primary/20 text-primary-foreground">
+                          <h3 className="font-semibold text-white">{debt.name}</h3>
+                          <span className="text-sm px-3 py-1 rounded-full bg-white/20 text-white">
                             {debt.interestRate}% APR
                           </span>
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                           <div>
-                            <p className="text-xs text-muted-foreground">Total Amount</p>
-                            <p className="font-medium">${debt.amount.toLocaleString()}</p>
+                            <p className="text-xs text-white/70">Total Amount</p>
+                            <p className="font-medium text-white">${debt.amount.toLocaleString()}</p>
                           </div>
                           <div>
-                            <p className="text-xs text-muted-foreground">Monthly Payment</p>
-                            <p className="font-medium">${debt.monthlyPayment}</p>
+                            <p className="text-xs text-white/70">Monthly Payment</p>
+                            <p className="font-medium text-white">${debt.monthlyPayment}</p>
                           </div>
                           <div className="hidden md:block">
-                            <p className="text-xs text-muted-foreground">Est. Payoff</p>
-                            <p className="font-medium">{Math.ceil(debt.amount / debt.monthlyPayment)} months</p>
+                            <p className="text-xs text-white/70">Est. Payoff</p>
+                            <p className="font-medium text-white">{Math.ceil(debt.amount / debt.monthlyPayment)} months</p>
                           </div>
                         </div>
-                        <div className="h-2 bg-secondary rounded-full overflow-hidden">
+                        <div className="h-2 bg-white/20 rounded-full overflow-hidden">
                           <div
-                            className="h-2 progress-gradient rounded-full"
+                            className="h-2 bg-white/70 rounded-full"
                             style={{ width: "40%" }}
                           />
                         </div>
@@ -397,26 +400,26 @@ const Index = () => {
                 </CardContent>
               </Card>
 
-              <Card className="glass-card border-none shadow-lg">
+              <Card className="glass-card card-purple border-none shadow-lg">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Lightbulb className="h-5 w-5 text-primary" />
+                  <CardTitle className="flex items-center gap-2 text-white">
+                    <Lightbulb className="h-5 w-5 text-white" />
                     AI Insights
                   </CardTitle>
-                  <CardDescription>Generated recommendations based on your scenarios</CardDescription>
+                  <CardDescription className="text-white/70">Generated recommendations based on your scenarios</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <div className="p-4 bg-secondary/30 rounded-lg border border-secondary/50">
-                      <h4 className="font-medium mb-2">Optimistic Scenario</h4>
-                      <p className="text-sm text-muted-foreground">
+                    <div className="p-4 bg-white/10 rounded-lg border border-white/10">
+                      <h4 className="font-medium mb-2 text-white">Optimistic Scenario</h4>
+                      <p className="text-sm text-white/80">
                         If you increase your monthly investment by 10% and maintain current spending levels,
                         your net worth could grow to $84,000 by next year.
                       </p>
                     </div>
-                    <div className="p-4 bg-secondary/30 rounded-lg border border-secondary/50">
-                      <h4 className="font-medium mb-2">Risk Analysis</h4>
-                      <p className="text-sm text-muted-foreground">
+                    <div className="p-4 bg-white/10 rounded-lg border border-white/10">
+                      <h4 className="font-medium mb-2 text-white">Risk Analysis</h4>
+                      <p className="text-sm text-white/80">
                         Even in a conservative scenario, your emergency fund provides 4 months of coverage,
                         maintaining financial stability.
                       </p>
@@ -435,6 +438,33 @@ const Index = () => {
       >
         <MessageCircle className="h-5 w-5 md:h-6 md:w-6 text-white" />
       </Button>
+
+      {/* Mobile Bottom Navigation - Inspired by the reference image */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bottom-nav z-40 py-3 px-6">
+        <div className="flex justify-between items-center">
+          <div className="flex flex-col items-center">
+            <Home className="h-5 w-5 text-white/70" />
+            <span className="text-xs mt-1 text-white/70">Home</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <Layout className="h-5 w-5 text-white/70" />
+            <span className="text-xs mt-1 text-white/70">Cards</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="h-12 w-12 rounded-full bg-primary/80 flex items-center justify-center -mt-6">
+              <Target className="h-6 w-6 text-white" />
+            </div>
+          </div>
+          <div className="flex flex-col items-center">
+            <DollarSign className="h-5 w-5 text-white/70" />
+            <span className="text-xs mt-1 text-white/70">Money</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <Trophy className="h-5 w-5 text-white/70" />
+            <span className="text-xs mt-1 text-white/70">Goals</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

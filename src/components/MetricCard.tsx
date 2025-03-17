@@ -8,6 +8,7 @@ interface MetricCardProps {
   value: string | number;
   percentage?: number;
   color?: string;
+  bgClass?: string;
   className?: string;
 }
 
@@ -16,15 +17,16 @@ export const MetricCard = ({
   value,
   percentage,
   color = "bg-primary",
+  bgClass,
   className,
 }: MetricCardProps) => {
   return (
-    <Card className={cn("metric-card overflow-hidden border-none shadow-lg", className)}>
+    <Card className={cn("metric-card overflow-hidden border-none shadow-lg", bgClass, className)}>
       <CardContent className="p-4 md:p-6 relative">
         <div className="space-y-2 md:space-y-3">
-          <p className="text-xs md:text-sm text-muted-foreground">{title}</p>
+          <p className="text-xs md:text-sm text-white/80">{title}</p>
           <div className="flex items-center justify-between">
-            <p className="text-lg md:text-2xl font-bold">{value}</p>
+            <p className="text-lg md:text-2xl font-bold text-white">{value}</p>
             {percentage !== undefined && (
               <div className={cn("rounded-full px-2 py-0.5 md:px-3 md:py-1 flex items-center gap-1", color)}>
                 {percentage > 0 ? (
