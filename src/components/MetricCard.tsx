@@ -19,7 +19,7 @@ export const MetricCard = ({
   className,
 }: MetricCardProps) => {
   return (
-    <Card className={cn("metric-card overflow-hidden border-none shadow-lg bg-primary/10", className)}>
+    <Card className={cn("metric-card overflow-hidden border-none shadow-lg", className)}>
       <CardContent className="p-4 md:p-6 relative">
         <div className="space-y-2 md:space-y-3">
           <p className="text-xs md:text-sm text-muted-foreground">{title}</p>
