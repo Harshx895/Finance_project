@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { MetricCard } from "@/components/MetricCard";
 import {
@@ -10,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer, XAxis, YAxis, Tooltip, BarChart, Bar } from 'recharts';
-import { MessageCircle, User, ChevronDown, TrendingUp, Wallet, CreditCard, BarChart3, Target, Lightbulb, Home, Layout, DollarSign, Trophy } from "lucide-react";
+import { MessageCircle, User, ChevronDown, TrendingUp, Wallet, CreditCard, BarChart3, Target, Lightbulb, Layout, DollarSign, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const dummyNetWorthData = [
@@ -64,7 +63,7 @@ const Index = () => {
   const [showAIChat, setShowAIChat] = useState(false);
 
   return (
-    <div className="min-h-screen p-3 md:p-8 bg-background">
+    <div className="min-h-screen p-3 md:p-8 bg-background pb-20 md:pb-8">
       <div className="max-w-7xl mx-auto space-y-6 md:space-y-8">
         <div className="flex items-center justify-between">
           <div className="space-y-1">
@@ -81,26 +80,26 @@ const Index = () => {
 
         <Tabs defaultValue="dashboard" className="space-y-6 md:space-y-8">
           <div className="relative overflow-auto pb-1">
-            <TabsList className="inline-flex w-full md:w-auto p-1 gap-1 bg-secondary rounded-full overflow-x-auto scrollbar-none">
+            <TabsList className="inline-flex w-full w-auto p-1 gap-1 bg-secondary rounded-full overflow-x-auto scrollbar-none">
               <TabsTrigger value="dashboard" className="rounded-full whitespace-nowrap data-[state=active]:tab-active">
                 <BarChart3 className="h-4 w-4 mr-1 md:mr-2" />
-                <span className="md:inline">Dashboard</span>
+                <span>Dashboard</span>
               </TabsTrigger>
               <TabsTrigger value="goals" className="rounded-full whitespace-nowrap data-[state=active]:tab-active">
                 <Target className="h-4 w-4 mr-1 md:mr-2" />
-                <span className="md:inline">Goals</span>
+                <span>Goals</span>
               </TabsTrigger>
               <TabsTrigger value="investments" className="rounded-full whitespace-nowrap data-[state=active]:tab-active">
                 <TrendingUp className="h-4 w-4 mr-1 md:mr-2" />
-                <span className="md:inline">Investments</span>
+                <span>Investments</span>
               </TabsTrigger>
               <TabsTrigger value="debt" className="rounded-full whitespace-nowrap data-[state=active]:tab-active">
                 <CreditCard className="h-4 w-4 mr-1 md:mr-2" />
-                <span className="md:inline">Debt</span>
+                <span>Debt</span>
               </TabsTrigger>
               <TabsTrigger value="scenarios" className="rounded-full whitespace-nowrap data-[state=active]:tab-active">
                 <Lightbulb className="h-4 w-4 mr-1 md:mr-2" />
-                <span className="md:inline">Scenarios</span>
+                <span>Scenarios</span>
               </TabsTrigger>
             </TabsList>
           </div>
@@ -439,29 +438,37 @@ const Index = () => {
         <MessageCircle className="h-5 w-5 md:h-6 md:w-6 text-white" />
       </Button>
 
-      {/* Mobile Bottom Navigation - Inspired by the reference image */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bottom-nav z-40 py-3 px-6">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-background/95 backdrop-blur-lg border-t border-white/10 px-4 py-2">
         <div className="flex justify-between items-center">
           <div className="flex flex-col items-center">
-            <Home className="h-5 w-5 text-white/70" />
-            <span className="text-xs mt-1 text-white/70">Home</span>
+            <Button variant="ghost" size="icon" className="h-10 w-10 rounded-full">
+              <BarChart3 className="h-5 w-5 text-primary" />
+            </Button>
+            <span className="text-xs mt-1 text-white/70">Overview</span>
           </div>
           <div className="flex flex-col items-center">
-            <Layout className="h-5 w-5 text-white/70" />
+            <Button variant="ghost" size="icon" className="h-10 w-10 rounded-full">
+              <Layout className="h-5 w-5 text-white/70" />
+            </Button>
             <span className="text-xs mt-1 text-white/70">Cards</span>
           </div>
           <div className="flex flex-col items-center">
-            <div className="h-12 w-12 rounded-full bg-primary/80 flex items-center justify-center -mt-6">
-              <Target className="h-6 w-6 text-white" />
-            </div>
+            <Button variant="default" size="icon" className="h-12 w-12 rounded-full bg-primary/90 hover:bg-primary">
+              <Target className="h-6 w-6 text-black" />
+            </Button>
+            <span className="text-xs mt-1 text-white/70">Goals</span>
           </div>
           <div className="flex flex-col items-center">
-            <DollarSign className="h-5 w-5 text-white/70" />
+            <Button variant="ghost" size="icon" className="h-10 w-10 rounded-full">
+              <DollarSign className="h-5 w-5 text-white/70" />
+            </Button>
             <span className="text-xs mt-1 text-white/70">Money</span>
           </div>
           <div className="flex flex-col items-center">
-            <Trophy className="h-5 w-5 text-white/70" />
-            <span className="text-xs mt-1 text-white/70">Goals</span>
+            <Button variant="ghost" size="icon" className="h-10 w-10 rounded-full">
+              <Trophy className="h-5 w-5 text-white/70" />
+            </Button>
+            <span className="text-xs mt-1 text-white/70">Rewards</span>
           </div>
         </div>
       </div>

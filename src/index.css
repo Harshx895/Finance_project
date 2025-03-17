@@ -129,7 +129,7 @@
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
 }
 
-/* New card colors inspired by the image */
+/* Card colors inspired by the image */
 .card-blue {
   background: linear-gradient(135deg, #3295e8, #2080d0);
 }
@@ -154,13 +154,7 @@
   background: linear-gradient(135deg, #11998e, #38ef7d);
 }
 
-.bottom-nav {
-  background: rgba(15, 15, 25, 0.9);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 1.5rem 1.5rem 0 0;
-}
-
+/* Updated mobile styles */
 @media (max-width: 640px) {
   .glass-card {
     border-radius: calc(var(--radius) - 0.25rem);
@@ -169,5 +163,16 @@
   .tab-active {
     transform: translateY(-1px);
     box-shadow: 0 3px 8px rgba(49, 111, 246, 0.3);
+  }
+  
+  .tabs-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .tabs-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-x: auto;
+    padding-bottom: 4px;
   }
 }
